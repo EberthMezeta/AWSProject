@@ -1,7 +1,7 @@
 package mzt.awsproject.Repositories;
 
 import mzt.awsproject.DaoInterfaces.IDAOEstudiante;
-import mzt.awsproject.models.Estudiante;
+import mzt.awsproject.Models.Estudiante;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

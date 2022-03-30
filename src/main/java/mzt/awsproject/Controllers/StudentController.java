@@ -1,8 +1,8 @@
-package mzt.awsproject.Controladores;
+package mzt.awsproject.Controllers;
 
 
 import mzt.awsproject.Repositories.StudentRepository;
-import mzt.awsproject.models.Estudiante;
+import mzt.awsproject.Models.Estudiante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

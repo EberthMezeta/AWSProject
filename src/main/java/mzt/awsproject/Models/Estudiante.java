@@ -1,4 +1,4 @@
-package mzt.awsproject.models;
+package mzt.awsproject.Models;
 
 public class Estudiante {
     private long id;

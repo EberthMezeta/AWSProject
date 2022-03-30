@@ -1,4 +1,4 @@
-package mzt.awsproject.models;
+package mzt.awsproject.Models;
 
 public class Profesor {
     private long id;
