@@ -7,8 +7,8 @@ public interface IDAOEntidad <T>{
 
     T get(long id);
     List<T> getAll();
-    void update(T t);
-    void save(T t);
-    void delete(long id);
+    boolean update(T t);
+    boolean save(T t);
+    boolean delete(long id);
 
 }

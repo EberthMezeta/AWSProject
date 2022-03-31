@@ -29,34 +29,37 @@ public class TeacherRepository implements IDAOProfesor {
     }
 
     @Override
-    public void update(Profesor profesor) {
+    public boolean update(Profesor profesor) {
         int index = getIndex(profesor.getId());
         if (index>-1){
             teachers.set(index,profesor);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void save(Profesor profesor) {
+    public boolean save(Profesor profesor) {
 
         if (!teachers.isEmpty()){
             int lastIndex = teachers.size()-1;
             long id = teachers.get(lastIndex).getId()+1;
             profesor.setId(id);
-            teachers.add(profesor);
-            return;
+            return teachers.add(profesor);
         }
 
         profesor.setId(1);
-        teachers.add(profesor);
+        return teachers.add(profesor);
     }
 
     @Override
-    public void delete(long id) {
+    public boolean delete(long id) {
         int index = getIndex(id);
         if (index>-1){
             teachers.remove(index);
+            return true;
         }
+        return false;
     }
     private int getIndex(long id){
         int index = -1;

@@ -5,16 +5,16 @@ public class Profesor {
     private long numeroEmpleado;
     private String nombres;
     private String apellidos;
-    private String horasClase;
+    private int horasClase;
 
-    public Profesor(long numeroEmpleado, String nombres, String apellidos, String horasClase) {
+    public Profesor(long numeroEmpleado, String nombres, String apellidos, int horasClase) {
         this.numeroEmpleado = numeroEmpleado;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.horasClase = horasClase;
     }
 
-    public Profesor(long id, long numeroEmpleado, String nombres, String apellidos, String horasClase) {
+    public Profesor(long id, long numeroEmpleado, String nombres, String apellidos, int horasClase) {
         this.id = id;
         this.numeroEmpleado = numeroEmpleado;
         this.nombres = nombres;
@@ -38,7 +38,7 @@ public class Profesor {
         return apellidos;
     }
 
-    public String getHorasClase() {
+    public int getHorasClase() {
         return horasClase;
     }
 
@@ -58,7 +58,7 @@ public class Profesor {
         this.apellidos = apellidos;
     }
 
-    public void setHorasClase(String horasClase) {
+    public void setHorasClase(int horasClase) {
         this.horasClase = horasClase;
     }
 

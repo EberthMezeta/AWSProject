@@ -29,34 +29,37 @@ public class StudentRepository implements IDAOEstudiante {
     }
 
     @Override
-    public void update(Estudiante estudiante) {
+    public boolean update(Estudiante estudiante) {
         int index = getIndex(estudiante.getId());
         if (index>-1){
             students.set(index,estudiante);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void save(Estudiante estudiante) {
+    public boolean save(Estudiante estudiante) {
 
         if (!students.isEmpty()){
             int lastIndex = students.size()-1;
             long id = students.get(lastIndex).getId()+1;
             estudiante.setId(id);
-            students.add(estudiante);
-            return;
+            return students.add(estudiante);
         }
 
         estudiante.setId(1);
-        students.add(estudiante);
+        return students.add(estudiante);
     }
 
     @Override
-    public void delete(long id) {
+    public boolean delete(long id) {
         int index = getIndex(id);
         if (index>-1){
             students.remove(index);
+            return true;
         }
+        return false;
     }
 
     private int getIndex(long id){
