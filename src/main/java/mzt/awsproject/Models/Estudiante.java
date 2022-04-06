@@ -1,32 +1,58 @@
 package mzt.awsproject.Models;
 
-public class Estudiante {
-    private long id;
-    private long matricula;
-    private String nombres;
-    private String apellidos;
-    private int promedio;
+import org.hibernate.validator.constraints.Email;
+import org.springframework.lang.NonNull;
 
-    public Estudiante(long matricula, String nombres, String apellidos, int promedio) {
+import javax.validation.constraints.Negative;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+
+
+public class Estudiante {
+
+    @PositiveOrZero
+    @NotNull
+    private long id;
+
+    @NotEmpty(message = "No debe ser vacio")
+    private String matricula;
+
+    @NotEmpty(message = "No debe ser vacio")
+    private String nombres;
+
+    @NotEmpty(message = "No debe ser vacio")
+    private String apellidos;
+
+    @PositiveOrZero
+    @NotNull
+    private double promedio;
+
+    public Estudiante(String matricula, String nombres, String apellidos, double promedio) {
         this.matricula = matricula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.promedio = promedio;
     }
 
-    public Estudiante(long id, long matricula, String nombres, String apellidos, int promedio) {
+    public Estudiante(long id, String matricula, String nombres, String apellidos, double promedio) {
         this.id = id;
         this.matricula = matricula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.promedio = promedio;
     }
+    public Estudiante() {
+
+    }
+
+
 
     public long getId() {
         return id;
     }
 
-    public long getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
@@ -38,7 +64,7 @@ public class Estudiante {
         return apellidos;
     }
 
-    public int getPromedio() {
+    public double getPromedio() {
         return promedio;
     }
 
@@ -46,7 +72,7 @@ public class Estudiante {
         this.id = id;
     }
 
-    public void setMatricula(long matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
@@ -58,7 +84,7 @@ public class Estudiante {
         this.apellidos = apellidos;
     }
 
-    public void setPromedio(int promedio) {
+    public void setPromedio(double promedio) {
         this.promedio = promedio;
     }
 
@@ -68,7 +94,7 @@ public class Estudiante {
                 "id:" + id +
                 ", matricula:" + matricula +
                 ", nombres:" + nombres + '\'' +
-                ", apellidos:'" + apellidos + '\'' +
+                ", apellidos:" + apellidos + '\'' +
                 ", promedio:" + promedio +
                 '}';
     }

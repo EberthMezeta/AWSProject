@@ -1,20 +1,37 @@
 package mzt.awsproject.Models;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+
 public class Profesor {
+
+    @PositiveOrZero
+    @NotNull
     private long id;
-    private long numeroEmpleado;
+
+    @PositiveOrZero
+    @NotNull
+    private int numeroEmpleado;
+
+    @NotEmpty(message = "No debe ser vacio")
     private String nombres;
+
+    @NotEmpty(message = "No debe ser vacio")
     private String apellidos;
+
+    @PositiveOrZero
+    @NotNull
     private int horasClase;
 
-    public Profesor(long numeroEmpleado, String nombres, String apellidos, int horasClase) {
+    public Profesor(int numeroEmpleado, String nombres, String apellidos, int horasClase) {
         this.numeroEmpleado = numeroEmpleado;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.horasClase = horasClase;
     }
 
-    public Profesor(long id, long numeroEmpleado, String nombres, String apellidos, int horasClase) {
+    public Profesor(long id, int numeroEmpleado, String nombres, String apellidos, int horasClase) {
         this.id = id;
         this.numeroEmpleado = numeroEmpleado;
         this.nombres = nombres;
@@ -22,11 +39,15 @@ public class Profesor {
         this.horasClase = horasClase;
     }
 
+    public Profesor(){
+
+    }
+
     public long getId() {
         return id;
     }
 
-    public long getNumeroEmpleado() {
+    public int getNumeroEmpleado() {
         return numeroEmpleado;
     }
 
@@ -46,7 +67,7 @@ public class Profesor {
         this.id = id;
     }
 
-    public void setNumeroEmpleado(long numeroEmpleado) {
+    public void setNumeroEmpleado(int numeroEmpleado) {
         this.numeroEmpleado = numeroEmpleado;
     }
 

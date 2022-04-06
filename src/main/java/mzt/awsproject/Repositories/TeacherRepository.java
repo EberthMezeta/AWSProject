@@ -29,8 +29,8 @@ public class TeacherRepository implements IDAOProfesor {
     }
 
     @Override
-    public boolean update(Profesor profesor) {
-        int index = getIndex(profesor.getId());
+    public boolean update(long id, Profesor profesor) {
+        int index = getIndex(id);
         if (index>-1){
             teachers.set(index,profesor);
             return true;
@@ -40,15 +40,6 @@ public class TeacherRepository implements IDAOProfesor {
 
     @Override
     public boolean save(Profesor profesor) {
-
-        if (!teachers.isEmpty()){
-            int lastIndex = teachers.size()-1;
-            long id = teachers.get(lastIndex).getId()+1;
-            profesor.setId(id);
-            return teachers.add(profesor);
-        }
-
-        profesor.setId(1);
         return teachers.add(profesor);
     }
 
