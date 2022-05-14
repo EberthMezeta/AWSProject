@@ -1,9 +1,5 @@
 package mzt.awsproject.Models;
 
-import org.hibernate.validator.constraints.Email;
-import org.springframework.lang.NonNull;
-
-import javax.validation.constraints.Negative;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
