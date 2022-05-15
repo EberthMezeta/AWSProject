@@ -3,11 +3,13 @@ package mzt.awsproject.Controllers;
 
 import mzt.awsproject.Implementation.StudentRepository;
 import mzt.awsproject.Models.Estudiante;
+import mzt.awsproject.Services.IAwsS3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -18,6 +20,9 @@ public class StudentController {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    private IAwsS3Service iAwsS3Service;
 
     @GetMapping(path = "/alumnos")
     public List<Estudiante> getAll (){
@@ -42,8 +47,23 @@ public class StudentController {
         Estudiante lastEstudiante;
         lastEstudiante = estudiantes.get(size-1);
         int id = (int) lastEstudiante.getId();
-
+        System.out.println("{\"id\":" +id+'}');
         return new ResponseEntity<>("{\"id\":" +id+'}',HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/alumnos/{id}/fotoPerfil", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> addStudentAndPhoto( @PathVariable long id, @RequestPart(value="foto") MultipartFile file){
+
+        iAwsS3Service.uploadFile(id,file);
+        String URLfromS3 = iAwsS3Service.getLinkFromS3(id,file.getOriginalFilename());
+
+        Estudiante estudiante = studentRepository.get(id);
+        estudiante.setFotoPerfilUrl(URLfromS3);
+        studentRepository.update(id,estudiante);
+
+        System.out.println(URLfromS3);
+        System.out.println("{\"fotoPerfilUrl\":" + "'" +estudiante.getFotoPerfilUrl() + "'" +'}');
+        return new ResponseEntity<>("{\"fotoPerfilUrl\":" + "'" +estudiante.getFotoPerfilUrl() + "'" +'}',HttpStatus.OK);
     }
 
 
@@ -62,7 +82,6 @@ public class StudentController {
         }
         return new ResponseEntity<>("Deleted",HttpStatus.OK);
     }
-
 
 }
 

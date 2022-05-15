@@ -34,6 +34,10 @@ public class Estudiante implements Serializable {
     @NotNull
     private double promedio;
 
+    private String fotoPerfilUrl;
+
+
+
     public Estudiante(String matricula, String nombres, String apellidos, double promedio) {
         this.matricula = matricula;
         this.nombres = nombres;
@@ -52,7 +56,9 @@ public class Estudiante implements Serializable {
 
     }
 
-
+    public String getFotoPerfilUrl() {
+        return fotoPerfilUrl;
+    }
 
     public long getId() {
         return id;
@@ -92,6 +98,11 @@ public class Estudiante implements Serializable {
 
     public void setPromedio(double promedio) {
         this.promedio = promedio;
+    }
+
+
+    public void setFotoPerfilUrl(String fotoPerfilUrl) {
+        this.fotoPerfilUrl = fotoPerfilUrl;
     }
 
     @Override
