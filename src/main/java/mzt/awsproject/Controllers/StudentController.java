@@ -1,7 +1,7 @@
 package mzt.awsproject.Controllers;
 
 
-import mzt.awsproject.Repositories.StudentRepository;
+import mzt.awsproject.Implementation.StudentRepository;
 import mzt.awsproject.Models.Estudiante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +36,14 @@ public class StudentController {
     @PostMapping(path = "/alumnos", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> addStudent( @RequestBody @Valid Estudiante estudiante){
         studentRepository.save(estudiante);
-        return new ResponseEntity<>("Created",HttpStatus.CREATED);
+
+        List<Estudiante> estudiantes = studentRepository.getAll();
+        int size = estudiantes.size();
+        Estudiante lastEstudiante;
+        lastEstudiante = estudiantes.get(size-1);
+        int id = (int) lastEstudiante.getId();
+
+        return new ResponseEntity<>("{\"id\":" +id+'}',HttpStatus.CREATED);
     }
 
 

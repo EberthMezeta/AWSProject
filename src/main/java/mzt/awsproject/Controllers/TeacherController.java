@@ -1,7 +1,7 @@
 package mzt.awsproject.Controllers;
 
 
-import mzt.awsproject.Repositories.TeacherRepository;
+import mzt.awsproject.Implementation.TeacherRepository;
 import mzt.awsproject.Models.Profesor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +35,14 @@ public class TeacherController {
     @PostMapping(path = "/profesores", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> addTeacher(@RequestBody @Valid Profesor profesor){
         teacherRepository.save(profesor);
-        return  new ResponseEntity<>("Created",HttpStatus.CREATED);
+
+        List<Profesor> profesores = teacherRepository.getAll();
+        int size = profesores.size();
+        Profesor lastProfesor;
+        lastProfesor = profesores.get(size-1);
+        int id = (int) lastProfesor.getId();
+
+        return  new ResponseEntity<>("{\"id\":" +id+'}',HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/profesores/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

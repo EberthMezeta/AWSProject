@@ -1,14 +1,24 @@
 package mzt.awsproject.Models;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "estudiante")
+public class Estudiante implements Serializable {
 
 
-public class Estudiante {
+
+    private static final long serialVersionUID = 1L;
 
     @PositiveOrZero
     @NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_estudiante")
     private long id;
 
     @NotEmpty(message = "No debe ser vacio")
